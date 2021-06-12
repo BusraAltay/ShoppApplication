@@ -1,0 +1,61 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        @*<a class="navbar-brand" href="/">Hand Made Trend Hobby</a>*@
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a asp-controller="Home" asp-action="Index" class="nav-link active">Anasayfa</a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Shop" asp-action="List" class="nav-link active">Ürünler</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @*<li class="nav-item">
+                    <a asp-controller="Cart" asp-action="GetOrders" class="nav-link active">Siparişler</a>
+                </li>*@
+                @if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="AddProduct" class="nav-link ">Ürün Ekle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="ProductList" class="nav-link">Ürün Yönetimi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="AddCategory" class="nav-link">Kategori Ekle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="CategoryList" class="nav-link">Kategori Yönetimi</a>
+                    </li>
+                }
+            }
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a class="nav-link active">
+                        @User.Identity.Name
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Cart" asp-action="Index" class="nav-link active">
+                        <i class="fas fa-cart-plus"></i>Sepet
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Logout" class="nav-link active">Çıkış</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Login" class="nav-link active">Giriş</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Register" class="nav-link active">Üye Ol</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

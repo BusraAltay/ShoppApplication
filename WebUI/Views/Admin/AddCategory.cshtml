@@ -1,0 +1,26 @@
+﻿@model CategoryModel
+    @{
+        ViewData["Title"] = "AddCategory";
+    }
+
+    <h1>Kategori Ekle</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-controller="Admin" asp-action="AddCategory" method="post">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-md-2 col-form-label">Kategori İsmi</label>
+                    <div class="col-md-8">
+                        <input class="form-control" asp-for="Name" />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <button class="btn btn-primary" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+

@@ -1,0 +1,39 @@
+﻿@model ProductDetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <img src="/image/@Model.Product.ImageUrl" alt="@Model.Product.Name" class="img-fluid" />
+    </div>
+    <div class="col-md-9">
+        <h1 class="mb-3">
+            @Model.Product.Name
+        </h1>
+        <hr />
+    <div class="mb-3">
+        <h4 class="text-primary mb-3">
+            @Model.Product.UnitPrice TL
+        </h4>
+        
+        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="form-inline">
+            <input type="hidden" name="productId" value="@Model.Product.Id" />
+            <div class="input-group mb-3">
+                <input type="number" name="quantity" class="form-control" value="1" min="1" step="1" style="width:25px" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p class="p-3">
+            @Html.Raw(Model.Product.Description)
+        </p>
+    </div>
+</div>

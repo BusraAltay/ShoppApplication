@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link href="/modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/Style.css" rel="stylesheet" />
+    <link href="/css/slider.css" rel="stylesheet" />
+    <link href="/css/image.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+</head>
+<body>
+    <partial name="_navbar" />
+
+    <div class="container pt-100 mb-5">
+
+        @if (TempData["message"] != null)
+        {
+            <partial name="_resultmessage" model="@(TempData.Get<ResultMessage>("message"))" />
+        }
+
+        @RenderBody()
+
+    </div>
+
+    <partial name="_footer" />
+
+    <script src="\modules\jquery\dist\jquery.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>    SİL*@
+    <script src="\modules\bootstrap\dist\js\bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

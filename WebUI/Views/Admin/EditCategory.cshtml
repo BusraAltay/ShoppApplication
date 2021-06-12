@@ -1,0 +1,72 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "EditCategory";
+}
+
+<h1>Kategori Güncelle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-controller="Admin" asp-action="EditCategory" method="post">
+            <input type="hidden" name="categoryId" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="col-md-2 col-form-label">Kategori İsmi</label>
+                <div class="col-md-8">
+                    <input class="form-control" value="@Model.Name" asp-for="Name" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-8">
+                    <button class="btn btn-primary" type="submit">Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-7">
+        @if (Model.Products.Count() > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td style="width:30px">Id</td>
+                        <td style="width:100px">Resim</td>
+                        <td>İsim</td>
+                        <td style="width:20px">Fiyat</td>
+                        <td style="width:175px"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.Id</td>
+                            <td>
+                                <img src="/image/@product.ImageUrl" width="80" height="80" />
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.UnitPrice</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/admin/products/@product.Id" style="width:75px">Güncelle</a>
+
+                                <form action="/admin/deletefromcategory" method="post" style="display:inline">
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <input type="hidden" name="categoryId" value="@Model.Id" />
+                                    <button class="btn btn-danger btn-sm" type="submit" style="width:75px">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <h4>Ürün yok.</h4>
+            </div>
+        }
+    </div>
+    
+</div>

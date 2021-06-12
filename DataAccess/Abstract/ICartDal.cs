@@ -1,0 +1,15 @@
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DataAccess.Abstract
+{
+    public interface ICartDal : IEntityRepository<Cart>
+    {
+        Cart GetByUserId(string userId);
+        void DeleteFromCart(int cartId, int productId);
+        void ClearCart(string cartId);
+    }
+}
